@@ -1,29 +1,33 @@
 package com.todo.checklist.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
-@Data
 @Entity
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CheckListItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private LocalDateTime dateCompleted;
+    private Long itemId;
+
+    private LocalDateTime itemDateCompleted;
+
     private Status status;
 
-    private String description;
+    @Length(max = 300)
+    private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private CheckList checkLists;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private CheckList checkList;
 
     @OneToMany(mappedBy = "checkListItem", fetch = FetchType.EAGER)
-    private List<Notes>notes;
+    private Set<Notes> notes;
 }

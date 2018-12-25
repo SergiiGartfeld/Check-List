@@ -4,14 +4,19 @@
 <head>
     <th:block th:include="template :: scripts_header"/>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>Checklists</title>
 </head>
 <body>
 
+
 <th:block th:include="template :: navigator"/>
-<div class="container">
-    <h2>hello ziom!</h2>
-</div>
+<table>
+        <tr th:each="checkList : ${checkList}">
+            <td th:each="${checkList.getNameCheck()}"></td>
+            <td th:each="${checkList.getDateCreatedCheck()}"></td>
+        </tr>
+</table>
+
 <th:block th:include="template :: scripts_footer"/>
 </body>
 </html>

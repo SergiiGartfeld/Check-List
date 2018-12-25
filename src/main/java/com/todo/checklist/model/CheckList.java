@@ -1,17 +1,19 @@
 package com.todo.checklist.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
-@Data
+
 @Entity
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CheckList {
@@ -19,18 +21,18 @@ public class CheckList {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
+    @Length(max = 50)
     private String name;
 
     @CreationTimestamp
-    private LocalDateTime dateTimeCreated;
+    private LocalDateTime dateCreated;
 
 
-    private LocalDateTime dateTimeCompleted;
+    private LocalDateTime dateCompleted;
 
     private boolean archived;
 
-    @OneToMany(mappedBy = "checkLists", fetch = FetchType.EAGER)
-    private List<CheckListItem>checkListItems;
+    @OneToMany(mappedBy = "checkList", fetch = FetchType.EAGER)
+    private Set<CheckListItem> checklistItemSet;
 
 }
