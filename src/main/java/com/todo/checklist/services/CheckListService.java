@@ -34,7 +34,9 @@ try{
 }
 
 public List<CheckListDto> checkListsFromDB(){
-    return checkListRepository.findAll().stream()
+    return checkListRepository
+            .findAll()
+            .stream()
             .map(checkList -> chekListMapper.checkListToCheckListDto(checkList))
             .collect(Collectors.toList());
 }

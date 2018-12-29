@@ -34,7 +34,7 @@ public class ChecklistController {
     }
     @GetMapping("/list")
     public String getCheckListList(Model model){
-    model.addAttribute("checkListForm ", checkListService.checkListsFromDB());
-        return "checkList/list";
+    model.addAttribute("checkList", checkListService.checkListsFromDB());
+        return "checklists";
     }
 }

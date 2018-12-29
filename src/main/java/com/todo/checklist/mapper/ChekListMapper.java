@@ -25,6 +25,7 @@ public interface ChekListMapper {
             @Mapping(source = "dateCreated", target = "dateCreatedCheck"),
             @Mapping(source = "dateCompleted", target = "dateCompletedCheck"),
             @Mapping(source = "archived", target = "archivedCheck"),
+            @Mapping(source = "checklistItemSet", target = "checklistItemSetCheck"),
 
     })
     CheckListDto  checkListToCheckListDto(CheckList checkList);

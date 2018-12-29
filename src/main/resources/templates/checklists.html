@@ -6,16 +6,30 @@
     <meta charset="UTF-8">
     <title>Checklists</title>
 </head>
+<th:block th:include="template :: navigator"/>
 <body>
 
 
-<th:block th:include="template :: navigator"/>
+
 <table>
         <tr th:each="checkList : ${checkList}">
-            <td th:each="${checkList.getNameCheck()}"></td>
-            <td th:each="${checkList.getDateCreatedCheck()}"></td>
+            <td th:each="${checkList.getIdCheck()}">Id</td>
+            <td th:each="${checkList.getNameCheck()}">Task</td>
+            <td th:each="${checkList.getDateCreatedCheck()}">Date create</td>
+            <td th:each="${checkList.getDateCompletedCheck()}">Date end</td>
+            <td>
+                <a th:href="@{'' + ${checkList.getIdCheck()}}">
+                    Remove
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'' + ${checkList.getIdCheck()}}">
+                    Edit
+                </a>
+            </td>
         </tr>
 </table>
+
 
 <th:block th:include="template :: scripts_footer"/>
 </body>
