@@ -33,7 +33,7 @@ try{
     return Optional.empty();
 }
 
-public List<CheckListDto> checkListsFromDB(){
+public List<CheckListDto> getAll(){
     return checkListRepository
             .findAll()
             .stream()

@@ -1,7 +1,6 @@
 package com.todo.checklist.controller;
 
 import com.todo.checklist.model.CheckList;
-import com.todo.checklist.model.dto.AddChecklistDto;
 import com.todo.checklist.model.dto.CheckListDto;
 import com.todo.checklist.services.CheckListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
 
@@ -34,7 +32,8 @@ public class ChecklistController {
     }
     @GetMapping("/list")
     public String getCheckListList(Model model){
-    model.addAttribute("checkList", checkListService.checkListsFromDB());
+    model.addAttribute("checkLi", checkListService.getAll());
+
         return "checklists";
     }
 }
