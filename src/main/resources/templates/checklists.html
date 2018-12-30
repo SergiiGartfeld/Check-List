@@ -9,18 +9,21 @@
 <body>
 <th:block th:include="template :: navigator"/>
 <table>
+    <hr>
+
 <tr th:each="checkList : ${checkLi}">
+
     <td th:text="${checkList.getIdCheck()}">Id</td>
     <td th:text="${checkList.getNameCheck()}">Task</td>
     <td th:text="${checkList.getDateCreatedCheck()}">Date create</td>
     <td th:text="${checkList.getDateCompletedCheck()}">Date end</td>
     <td>
-        <a th:href="@{'' + ${checkList.getIdCheck()}}">
+        <a th:href="@{'/remove?checkListToRemove=' + ${checkList.getIdCheck()}}">
             Remove
         </a>
     </td>
     <td>
-        <a th:href="@{'' + ${checkList.getIdCheck()}}">
+        <a th:href="@{'/edit/' + ${checkList.getIdCheck()}}">
             Edit
         </a>
     </td>

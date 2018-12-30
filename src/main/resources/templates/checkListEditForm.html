@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="UTF-8">
+    <title>Edit Form</title>
+</head>
+<body>
+<th:block th:include="template :: navigator"/>
+
+<form th:action="@{'/edit/' + ${checkListToEdit.getIdCheck()}}" method="post" th:object="${checkListToEdit}">
+    <input type="hidden" th:field="*{dateCreatedCheck}" th:value="*{dateCreatedCheck}">
+    <input type="hidden" th:field="*{idCheck}" th:value="*{idCheck}">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>
+                <input type="text" name="nameCheck" th:field="*{nameCheck}">
+            </td>
+        </tr>
+        <tr>
+            <td>Archived</td>
+            <td>
+                <input type="checkbox" name="archivedCheck" th:field="*{archivedCheck}">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" th:value="submit">
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+</div>
+<th:block th:include="template :: scripts_footer"/>
+</body>
+</html>

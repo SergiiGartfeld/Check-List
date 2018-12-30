@@ -5,6 +5,7 @@ import com.todo.checklist.model.CheckList;
 import com.todo.checklist.model.dto.CheckListDto;
 import com.todo.checklist.repository.CheckListRepository;
 import lombok.extern.java.Log;
+import org.hibernate.annotations.Check;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class CheckListService {
 private ChekListMapper chekListMapper;
 
 public Optional<CheckList>create(CheckListDto dto){
-    CheckList checkList =chekListMapper.checkListDtoToNewCheckList(dto);
+    CheckList checkList =chekListMapper.checkListDtoToCheckList(dto);
     checkList = checkListRepository.save(checkList);
 try{
     return Optional.of(checkListRepository.saveAndFlush(checkList));
@@ -39,5 +40,26 @@ public List<CheckListDto> getAll(){
             .stream()
             .map(checkList -> chekListMapper.checkListToCheckListDto(checkList))
             .collect(Collectors.toList());
+}
+public void update(CheckListDto dto){
+    CheckList checkList = chekListMapper.checkListDtoToCheckList(dto);
+    checkListRepository.save(checkList);
+}
+public void remove(Long id){
+    checkListRepository.deleteById(id);
+}
+public Optional<CheckListDto>getById(Long id){
+    Optional<CheckList>checkListOptional = checkListRepository.findById(id);
+    return checkListOptional.map(checkList -> chekListMapper.checkListToCheckListDto(checkList));
+}
+
+public List<CheckListDto>getArchived(){
+
+    return checkListRepository
+            .findCheckListsByArchivedIsTrue()
+            .stream()
+            .map(checkList -> chekListMapper.checkListToCheckListDto(checkList))
+            .collect(Collectors.toList());
+
 }
 }
