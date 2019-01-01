@@ -66,4 +66,14 @@ public class ChecklistController {
        model.addAttribute("checkLis", checkListService.getArchived());
         return "checkListsArchived";
     }
+
+    @GetMapping("/details/{identifier}")
+    public String getDetails(Model model, @PathVariable(name = "identifier")Long id){
+        Optional<CheckListDto>checkListDto = checkListService.getById(id);
+            if(checkListDto.isPresent()){
+                model.addAttribute("checkLists",checkListDto.get());
+                return "checklistsDetails";
+            }
+        return "redirect:/list";
+    }
 }

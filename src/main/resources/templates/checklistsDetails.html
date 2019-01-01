@@ -1,0 +1,28 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="template :: scripts_header"/>
+    <meta charset="UTF-8">
+    <title>Checklists</title>
+</head>
+<body>
+<th:block th:include="template :: navigator"/>
+<table>
+    <hr>
+
+    <tr th:each="checkLists : ${checkLists}">
+        <td th:text="${checkLists.getNameCheck()}">Task</td>
+
+        <td>
+            <a th:href="@{'/addTask/' + ${checkLists.getIdCheck()}}">
+                Add Task
+            </a>
+        </td>
+    </tr>
+</table>
+
+
+<th:block th:include="template :: scripts_footer"/>
+</body>
+</html>
