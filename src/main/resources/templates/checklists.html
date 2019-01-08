@@ -11,28 +11,28 @@
 <table>
     <hr>
 
-<tr th:each="checkList : ${checkLi}">
+    <tr th:each="checkList : ${checkLi}">
 
-    <td th:text="${checkList.getIdCheck()}">Id</td>
-    <td th:text="${checkList.getNameCheck()}">Task</td>
-    <td th:text="${checkList.getDateCreatedCheck()}">Date create</td>
-    <td th:text="${checkList.getDateCompletedCheck()}">Date end</td>
-    <td>
-        <a th:href="@{'/remove?checkListToRemove=' + ${checkList.getIdCheck()}}">
-            Remove
-        </a>
-    </td>
-    <td>
-        <a th:href="@{'/edit/' + ${checkList.getIdCheck()}}">
-            Edit
-        </a>
-    </td>
-    <td>
-        <a th:href="@{'/details/' + ${checkList.getIdCheck()}}">
-            Details
-        </a>
-    </td>
-</tr>
+        <td th:text="${checkList.getIdCheck()}">Id</td>
+        <td th:text="${checkList.getNameCheck()}">Task</td>
+        <td th:text="${checkList.getDateCreatedCheck()}">Date create</td>
+        <td th:text="${checkList.getDateCompletedCheck()}">Date end</td>
+        <td>
+            <a th:href="@{'/remove?checkListToRemove=' + ${checkList.getIdCheck()}}">
+                Remove
+            </a>
+        </td>
+        <td>
+            <a th:href="@{'/edit/' + ${checkList.getIdCheck()}}">
+                Edit
+            </a>
+        </td>
+        <td>
+            <a th:href="@{'/details/' + ${checkList.getIdCheck()}}">
+                Details
+            </a>
+        </td>
+    </tr>
 </table>
 
 

@@ -1,6 +1,8 @@
 package com.todo.checklist.mapper;
 
 import com.todo.checklist.model.CheckList;
+import com.todo.checklist.model.CheckListItem;
+import com.todo.checklist.model.dto.AddChecklistDto;
 import com.todo.checklist.model.dto.CheckListDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -43,7 +45,25 @@ public interface ChekListMapper {
     CheckList checkListDtoToCheckList(CheckListDto dto);
 
 
+    @Mappings(value = {
+            @Mapping(source = "itemId", target = "idItem"),
+            @Mapping(source = "itemDateCompleted", target = "itemTimeCompleted"),
+            @Mapping(source = "status", target = "statusItem"),
+            @Mapping(source = "content", target = "checkListName"),
+            @Mapping(source = "checkList", target = "checkListItem"),
+            @Mapping(source = "notes", target = "notesItem"),
 
+    })
+    AddChecklistDto checkListItemToAddCheckListDto(CheckListItem item);
 
+    @Mappings(value = {
+            @Mapping(target = "itemId", source = "idItem"),
+            @Mapping(target = "itemDateCompleted", source = "itemTimeCompleted"),
+            @Mapping(target = "status", source = "statusItem"),
+            @Mapping(target = "content", source = "checkListName"),
+            @Mapping(target = "checkList", source = "checkListItem"),
+            @Mapping(target = "notes", source = "notesItem"),
+    })
+    CheckListItem AddCheckListDtoToCheckListItem(AddChecklistDto dto);
 
 }

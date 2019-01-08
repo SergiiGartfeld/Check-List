@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,6 +34,6 @@ public class CheckList {
     private boolean archived;
 
     @OneToMany(mappedBy = "checkList", fetch = FetchType.EAGER)
-    private Set<CheckListItem> checklistItemSet;
+    private Set<CheckListItem> checklistItemSet = new HashSet<>();
 
 }

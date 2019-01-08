@@ -23,10 +23,10 @@ public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/","/css/**","/js/**","/webjars/**","/login","/register").permitAll()
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
-               .and()
-               .formLogin().loginPage("/login")
-               .defaultSuccessUrl("/")
-               .permitAll()
+                .and()
+                .formLogin().loginPage("/login")
+                .defaultSuccessUrl("/")
+                .permitAll()
                 .and().logout().logoutUrl("/logout")
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
@@ -34,8 +34,8 @@ public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
-        @Autowired
-        private UserDetailsService userLoginService;
+    @Autowired
+    private UserDetailsService userLoginService;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Bean

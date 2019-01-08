@@ -4,7 +4,7 @@
 <head>
     <th:block th:include="template :: scripts_header"/>
     <meta charset="UTF-8">
-    <title>Checklists</title>
+    <title>Details</title>
 </head>
 <body>
 <th:block th:include="template :: navigator"/>
@@ -15,7 +15,7 @@
         <td th:text="${checkLists.getNameCheck()}">Task</td>
 
         <td>
-            <a th:href="@{'/addTask/' + ${checkLists.getIdCheck()}}">
+            <a th:href="@{'/details/addTask/' + ${checkLists.getIdCheck()}}">
                 Add Task
             </a>
         </td>

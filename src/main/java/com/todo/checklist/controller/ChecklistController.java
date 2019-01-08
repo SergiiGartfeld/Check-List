@@ -1,6 +1,8 @@
 package com.todo.checklist.controller;
 
 import com.todo.checklist.model.CheckList;
+import com.todo.checklist.model.CheckListItem;
+import com.todo.checklist.model.dto.AddChecklistDto;
 import com.todo.checklist.model.dto.CheckListDto;
 import com.todo.checklist.services.CheckListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +29,15 @@ public class ChecklistController {
 
     @PostMapping("/checkListForm")
     public String submitChecklistForm(CheckListDto dto){
-    Optional<CheckList>checkListOptional = checkListService.create(dto);
-    if(checkListOptional.isPresent()){
-        return "redirect:/";
-    }
+        Optional<CheckList>checkListOptional = checkListService.create(dto);
+        if(checkListOptional.isPresent()){
+            return "redirect:/";
+        }
         return "redirect:/checklist/list";
     }
     @GetMapping("/list")
     public String getCheckListList(Model model){
-    model.addAttribute("checkLi", checkListService.getAll());
+        model.addAttribute("checkLi", checkListService.getAll());
 
         return "checklists";
     }
@@ -58,22 +60,43 @@ public class ChecklistController {
     }
     @PostMapping("/edit/{identifier}")
     public String getEditForm(Model model, @PathVariable(name = "identifier")Long id ,CheckListDto dto){
-       checkListService.update(dto);
-       return "redirect:/list";
+        checkListService.update(dto);
+        return "redirect:/list";
     }
     @GetMapping("/archived")
     public String getCheckListListArchived(Model model){
-       model.addAttribute("checkLis", checkListService.getArchived());
+        model.addAttribute("checkLis", checkListService.getArchived());
         return "checkListsArchived";
     }
 
     @GetMapping("/details/{identifier}")
     public String getDetails(Model model, @PathVariable(name = "identifier")Long id){
         Optional<CheckListDto>checkListDto = checkListService.getById(id);
-            if(checkListDto.isPresent()){
-                model.addAttribute("checkLists",checkListDto.get());
-                return "checklistsDetails";
-            }
+        if(checkListDto.isPresent()){
+            model.addAttribute("checkLists",checkListDto.get());
+            return "checklistsDetails";
+        }
         return "redirect:/list";
     }
+
+    @GetMapping("/details/addTask/{identifier}")
+    public String addTask(Model model,@PathVariable(name = "identifier")Long id){
+        model.addAttribute("checkListAddItem", id);
+
+        return "itemAdd";
+
+    }
+    @PostMapping("/details/addTask/{identifier}")
+    public String addTask( AddChecklistDto dto,@PathVariable(name = "identifier")Long id){
+
+        Optional<CheckListItem>itemOptional =  checkListService.createItem(dto, id);
+        if(itemOptional.isPresent()){
+            return "checklistsDetails";
+        }
+
+
+        return "checklistsDetails";
+
+    }
+
 }

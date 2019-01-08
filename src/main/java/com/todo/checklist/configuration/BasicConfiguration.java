@@ -11,13 +11,13 @@ public class BasicConfiguration {
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
-  //  @Bean
-  //  public User createAdminUser(){
-  //      User user= new User();
-  //      user.setUsername("admin");
-  //      user.setPassword("admin");
-  //      return user;
-  //  }
+    //  @Bean
+    //  public User createAdminUser(){
+    //      User user= new User();
+    //      user.setUsername("admin");
+    //      user.setPassword("admin");
+    //      return user;
+    //  }
 
 
 }
